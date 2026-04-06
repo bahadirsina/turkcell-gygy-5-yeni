@@ -22,6 +22,9 @@ public class OOP {
         System.out.println(car1.getSpecs()[0]); // Air Conditioning
         Bike bike1 = new Bike();
         bike1.setYear(2021);
+        
+        Car car2 = new Car(true, "Toyota");
+        System.out.println(car2.getBrand()); // Toyota
 
 
     }
