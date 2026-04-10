@@ -2,6 +2,7 @@ package com.turkcell.spring_starter.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.turkcell.spring_starter.model.Product;
+import com.turkcell.spring_starter.dto.ProductCreatedResponse;
+import com.turkcell.spring_starter.dto.ProductForCreateDto;
+
 
 @RestController //Anotasyon => Sınıfın bir RESTful web hizmeti denetleyicisi olduğunu belirtir.
 @RequestMapping("/api/product") // localhost:8080/api/product
@@ -32,8 +36,21 @@ public class ProductController {
                 .orElse(null); // Listeden id == product.getId() olan ürünü bulur, yoksa null döner
     }
     @PostMapping // localhost:8080/api/product/
-    public void createProduct(@RequestBody Product product) {
+    public ProductCreatedResponse createProduct(@RequestBody ProductForCreateDto productDto) {
+
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        product.setId(new Random().nextInt(999)); // Rastgele ID ataması (gerçek uygulamalarda veritabanı tarafından atanır)
+
         productList.add(product);
+
+        ProductCreatedResponse response = new ProductCreatedResponse();
+        response.setId(product.getId());    
+        response.setName(product.getName());
+        response.setPrice(product.getPrice());
+
+        return response;
     }
     @PutMapping
     public void updateProduct(@RequestBody Product product) {
