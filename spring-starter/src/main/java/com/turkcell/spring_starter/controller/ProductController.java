@@ -51,6 +51,10 @@ public class ProductController {
         response.setPrice(product.getPrice());
 
         return response;
+
+        // Ben Controller olarak iş kodu çalıştıramam ama bunu yapmam gerekli..
+        // İş kodunu çalıştıracak olan yapıya BAĞIMLIYIM
+        // Bağımlılık Enjeksiyonu -> Dependency Injection
     }
     @PutMapping
     public void updateProduct(@RequestBody Product product) {
