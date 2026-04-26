@@ -74,4 +74,12 @@ public class Product {
     public Category getCategory() {
         return this.category;
     }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
 }
