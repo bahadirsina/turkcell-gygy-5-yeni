@@ -1,6 +1,7 @@
 package com.turkcell.spring_starter.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import com.turkcell.spring_starter.repository.CategoryRepository;
@@ -48,5 +49,55 @@ public class CategoryServiceImpl {
             responseList.add(response);
         }
         return responseList;
+    }
+
+    public CreatedCategoryResponse update(String id, CreateCategoryRequest entity) {
+        //Veritabanında update çalıştırır.
+        //id'ye sahip kategoriyi günceller.
+        //Güncellenmiş kategoriyi geri döner.
+        UUID categoryId = UUID.fromString(id);
+        Category existingCategory = this.categoryRepository.findById(categoryId)
+            .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
+        
+        existingCategory.setName(entity.getName());
+        Category updatedCategory = this.categoryRepository.save(existingCategory);
+        
+        CreatedCategoryResponse response = new CreatedCategoryResponse();
+        response.setId(updatedCategory.getId());
+        response.setName(updatedCategory.getName());
+        
+        return response;
+    }
+
+    public CreatedCategoryResponse delete(String id) {
+        //Veritabanında delete çalıştırır.
+        //id'ye sahip kategoriyi siler.
+        //Silinmiş kategoriyi geri döner.
+        UUID categoryId = UUID.fromString(id);
+        Category category = this.categoryRepository.findById(categoryId)
+            .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
+        
+        CreatedCategoryResponse response = new CreatedCategoryResponse();
+        response.setId(category.getId());
+        response.setName(category.getName());
+        
+        this.categoryRepository.delete(category);
+        
+        return response;
+    }
+
+    public CreatedCategoryResponse getById(String id) {
+        //Veritabanında select çalıştırır.
+        //id'ye sahip kategoriyi getirir.
+        //Getirilen kategoriyi geri döner.
+        UUID categoryId = UUID.fromString(id);
+        Category category = this.categoryRepository.findById(categoryId)
+            .orElseThrow(() -> new RuntimeException("Category not found with id: " + id));
+        
+        CreatedCategoryResponse response = new CreatedCategoryResponse();
+        response.setId(category.getId());
+        response.setName(category.getName());
+        
+        return response;
     }
 }
