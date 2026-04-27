@@ -15,7 +15,7 @@ import com.turkcell.spring_starter.dto.CreatedCategoryResponse;
 import com.turkcell.spring_starter.dto.ListCategoryResponse;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -57,6 +57,10 @@ public class CategoriesController {
     @GetMapping("{id}")
     public CreatedCategoryResponse getById(@PathVariable String id) {
         return this.categoryServiceImpl.getById(id);
+    }
+    @GetMapping("search")
+    public List<ListCategoryResponse> search(@RequestParam String query) {
+        return this.categoryServiceImpl.search(query);
     }
     
 }
