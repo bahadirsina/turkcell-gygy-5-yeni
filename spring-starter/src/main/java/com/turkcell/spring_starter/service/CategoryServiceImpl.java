@@ -12,8 +12,6 @@ import com.turkcell.spring_starter.entity.Category;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
-import java.util.Set;
-
 @Service
 public class CategoryServiceImpl {
     private final CategoryRepository categoryRepository;
