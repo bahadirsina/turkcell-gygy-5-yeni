@@ -44,23 +44,5 @@ public class CategoriesController {
         return this.categoryServiceImpl.getAll();
     }
 
-    @PutMapping("{id}")
-    public CreatedCategoryResponse update(@PathVariable String id, @RequestBody CreateCategoryRequest entity) {
-        return this.categoryServiceImpl.update(id, entity);
-    }
 
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable String id) {
-        this.categoryServiceImpl.delete(id);
-    }
-
-    @GetMapping("{id}")
-    public CreatedCategoryResponse getById(@PathVariable String id) {
-        return this.categoryServiceImpl.getById(id);
-    }
-    @GetMapping("search")
-    public List<ListCategoryResponse> search(@RequestParam String query) {
-        return this.categoryServiceImpl.search(query);
-    }
-    
 }

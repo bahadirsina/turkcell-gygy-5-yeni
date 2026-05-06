@@ -14,40 +14,25 @@ import org.springframework.web.bind.annotation.RestController;
 import com.turkcell.spring_starter.dto.CreateProductRequest;
 import com.turkcell.spring_starter.dto.CreatedProductResponse;
 import com.turkcell.spring_starter.dto.ListProductResponse;
+import com.turkcell.spring_starter.repository.ProductRepository;
 import com.turkcell.spring_starter.service.ProductServiceImpl;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/products")
 public class ProductsController {
-
     private final ProductServiceImpl productServiceImpl;
 
     public ProductsController(ProductServiceImpl productServiceImpl) {
         this.productServiceImpl = productServiceImpl;
     }
 
-    @PostMapping()
-    public CreatedProductResponse create(@RequestBody CreateProductRequest createProductRequest) {
-        return this.productServiceImpl.create(createProductRequest);
-    }
 
-    @GetMapping
-    public List<ListProductResponse> getAll() {
-        return this.productServiceImpl.getAll();
-    }
 
-    @GetMapping("{id}")
-    public CreatedProductResponse getById(@PathVariable String id) {
-        return this.productServiceImpl.getById(id);
+    @PostMapping
+    public void create(@RequestBody @Valid CreateProductRequest createProductRequest)
+    {
+        this.productServiceImpl.create(createProductRequest);
     }
-
-    @PutMapping("{id}")
-    public CreatedProductResponse update(@PathVariable String id, @RequestBody CreateProductRequest entity) {
-        return this.productServiceImpl.update(id, entity);
-    }
-
-    @DeleteMapping("{id}")
-    public void delete(@PathVariable String id) {
-        this.productServiceImpl.delete(id);
-    }
+    
 }
