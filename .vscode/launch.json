@@ -9,6 +9,16 @@
             "projectName": "spring-starter",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringCqrsApplication<spring-cqrs>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.turkcell.spring_cqrs.SpringCqrsApplication",
+            "projectName": "spring-cqrs",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
