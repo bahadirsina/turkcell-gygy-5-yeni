@@ -1,5 +1,4 @@
 package com.turkcell.spring_cqrs.web.controller;
-import java.util.UUID;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
