@@ -34,6 +34,8 @@ public class UserContext {
     public boolean isAuthenticated() {
         return isAuthenticated;
     }
-    
+    public boolean hasRole(String role) {
+        return roles.contains(role);
+    }
 
 }

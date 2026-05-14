@@ -1,5 +1,7 @@
 package com.turkcell.spring_cqrs.application.features.user.command.login;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +33,7 @@ public class LoginCommandHandler implements CommandHandler<LoginCommand, LoginRe
             throw new RuntimeException("Invalid credentials");
         }
 
-        String jwt = jwtService.generate(user.getId(), user.getEmail());
+        String jwt = jwtService.generate(user.getId(), user.getEmail(), List.of("ADMIN")); // GEÇİCİ ROL DURUMU OLUŞTURULDU.
         return new LoginResponse(jwt);
     }
 
